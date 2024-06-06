@@ -43,6 +43,12 @@ table 50101 Employe
             Caption = 'Hire Date';
         }
 
+        field(7; "Department"; Text[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Department';
+        }
+
         field(8; "Email"; Text[100])
         {
             DataClassification = ToBeClassified;
