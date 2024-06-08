@@ -69,7 +69,7 @@ table 50101 Employe
             Clustered = true;
         }
 
-        key(SK; "FirstName", "LastName")
+        key(SK; "LastName")
         {
         }
     }
