@@ -1,24 +1,21 @@
 page 50101 "Employee Page"
 {
-    PageType = Card;
+    PageType = List;
+    SourceTable = Employe;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = Employe;
-    Caption = 'Employee Card';
+    Caption = 'Employee List';
 
     layout
     {
         area(content)
         {
-            group(Group)
+            repeater(Group)
             {
-                Caption = 'General';
-
                 field("Employee ID"; Rec."EmployeeID")
                 {
                     ApplicationArea = All;
                     Caption = 'Employee ID';
-                    Editable = false; // EmployeeID should not be editable
                 }
 
                 field("First Name"; Rec."FirstName")
@@ -33,22 +30,10 @@ page 50101 "Employee Page"
                     Caption = 'Last Name';
                 }
 
-                field("Birth Date"; Rec."BirthDate")
-                {
-                    ApplicationArea = All;
-                    Caption = 'Birth Date';
-                }
-
                 field("Position"; Rec."Position")
                 {
                     ApplicationArea = All;
                     Caption = 'Position';
-                }
-
-                field("Hire Date"; Rec."HireDate")
-                {
-                    ApplicationArea = All;
-                    Caption = 'Hire Date';
                 }
 
                 field("Department"; Rec."Department")
@@ -57,7 +42,7 @@ page 50101 "Employee Page"
                     Caption = 'Department';
                 }
 
-                field("Email"; Rec."Email")
+                field("Email"; Rec."Email Address")
                 {
                     ApplicationArea = All;
                     Caption = 'Email';
@@ -76,31 +61,20 @@ page 50101 "Employee Page"
     {
         area(processing)
         {
-            action(SaveRecord)
+            action(DeleteRecord)
             {
-                Caption = 'Save';
-                Image = Save;
+                Caption = 'Delete';
+                Image = Delete;
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedOnly = true;
 
                 trigger OnAction()
                 begin
-                    Rec.Modify(true);
+                    if Dialog.Confirm('Are you sure you want to delete this record?') then
+                        Rec.Delete();
                 end;
             }
         }
     }
-
-
-    trigger OnOpenPage()
-    begin
-        // Custom logic when the page is opened
-    end;
-
-    trigger OnClosePage()
-    begin
-        // Custom logic when the page is closed
-    end;
-
 }
