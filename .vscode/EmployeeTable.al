@@ -45,7 +45,6 @@ table 50101 "Employe"
             Caption = 'Position';
         }
 
-
         // Field 7: Department - Department where the employee works
         field(7; "Department"; Text[50])
         {
@@ -65,6 +64,13 @@ table 50101 "Employe"
         {
             DataClassification = ToBeClassified;
             Caption = 'Phone Number';
+        }
+
+        // Field 10: Phone Number - Stipend of the employee
+        field(10; "Stipend"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Stipend';
         }
     }
 

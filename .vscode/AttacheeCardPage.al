@@ -1,10 +1,10 @@
-page 50102 "Attachee Page"
+page 50103 "Attache Page"
 {
     PageType = List;
     SourceTable = Employe;
     ApplicationArea = All;
     UsageCategory = Administration;
-    Caption = 'Employee List';
+    Caption = 'Attachee Page';
 
     layout
     {
@@ -29,30 +29,6 @@ page 50102 "Attachee Page"
                     ApplicationArea = All;
                     Caption = 'Last Name';
                 }
-
-                field("Position"; Rec."Position")
-                {
-                    ApplicationArea = All;
-                    Caption = 'Position';
-                }
-
-                field("Department"; Rec."Department")
-                {
-                    ApplicationArea = All;
-                    Caption = 'Department';
-                }
-
-                field("Email"; Rec."Email Address")
-                {
-                    ApplicationArea = All;
-                    Caption = 'Email';
-                }
-
-                field("Phone Number"; Rec."PhoneNumber")
-                {
-                    ApplicationArea = All;
-                    Caption = 'Phone Number';
-                }
             }
         }
     }
@@ -61,18 +37,21 @@ page 50102 "Attachee Page"
     {
         area(processing)
         {
-            action(DeleteRecord)
+            action(ShowStipend)
             {
-                Caption = 'Delete';
-                Image = Delete;
+                Caption = 'Show Stipend';
+                Image = View;
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedOnly = true;
 
                 trigger OnAction()
+                var
+                    EmployeeStipend: Codeunit "Employee Stipend";
+                    StipendAmount: Decimal;
                 begin
-                    if Dialog.Confirm('Are you sure you want to delete this record?') then
-                        Rec.Delete();
+                    StipendAmount := EmployeeStipend.GetStipendByEmployeeID(Rec."EmployeeID");
+                    Message('The stipend for Employee ID %1 is %2', Rec."EmployeeID", StipendAmount);
                 end;
             }
         }
