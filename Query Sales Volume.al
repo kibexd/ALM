@@ -1,3 +1,4 @@
+// This is a query to retrieve customer sales by quantity.
 query 50108 "Customer Sales by quantity"
 {
     // This specifies the type of query. In this case, it's a normal query.
@@ -6,6 +7,7 @@ query 50108 "Customer Sales by quantity"
     // This sorts the query results in descending order by the Quantity column.
     OrderBy = descending(Quantity);
 
+    // This defines the elements of the query.
     elements
     {
         // This data item is for the Customer table.
